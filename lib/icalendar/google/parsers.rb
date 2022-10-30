@@ -11,7 +11,7 @@ module Icalendar
       end
 
       def from_url(url)
-        cid = url[%r{https://calendar.google.com/calendar/ical/(.*?)/public/basic.ics}, 1]
+        cid = url[%r{https://calendar.google.com/calendar/ical/(.*?)/(public|private-[a-f0-9]+)/basic.ics}, 1]
         uri = URI.parse(url)
         ssl = uri.scheme == "https"
         body = Net::HTTP.start(uri.host, uri.port, use_ssl: ssl) do |http|
